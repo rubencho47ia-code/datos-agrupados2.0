@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tendencia Central en Datos Agrupados · Grado 6°</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b1e;--card:#16163a;--c1:#7c5cff;--c2:#00e0c6;--c3:#ff5c8a;--c4:#ffd23f;--tx:#f2f2ff;--mu:#a6a6d0}
+*{box-sizing:border-box;margin:0}
+body{font-family:Poppins,system-ui,sans-serif;background:radial-gradient(circle at 10% 0%,#2a1a6e55,transparent 50%),radial-gradient(circle at 90% 30%,#00e0c622,transparent 45%),var(--bg);color:var(--tx);min-height:100vh}
+header{text-align:center;padding:36px 16px 10px}
+h1{font-size:clamp(1.7rem,5vw,3rem);font-weight:800;background:linear-gradient(90deg,var(--c2),var(--c1),var(--c3));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mu);margin-top:6px}
+.name{display:flex;gap:10px;justify-content:center;align-items:center;margin:18px auto;flex-wrap:wrap}
+input{font:inherit;padding:10px 14px;border-radius:12px;border:2px solid #2d2d66;background:#0f0f2b;color:var(--tx);outline:none}
+input:focus{border-color:var(--c2)}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px;position:sticky;top:0;background:#0b0b1ee6;backdrop-filter:blur(8px);z-index:5}
+nav button,.btn{font:inherit;font-weight:600;border:0;padding:10px 18px;border-radius:30px;cursor:pointer;color:var(--tx);background:#22224f;transition:.2s}
+nav button:hover,.btn:hover{transform:translateY(-2px)}
+nav button.on,.btn{background:linear-gradient(90deg,var(--c1),var(--c3));box-shadow:0 6px 20px #7c5cff55}
+main{max-width:900px;margin:20px auto;padding:0 14px 60px}
+section{display:none}section.on{display:block;animation:in .4s}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.card{background:var(--card);border:1px solid #2d2d66;border-radius:20px;padding:20px;margin:14px 0}
+.card h3{margin-bottom:8px}
+.t1{border-left:6px solid var(--c2)}.t2{border-left:6px solid var(--c1)}.t3{border-left:6px solid var(--c3)}.t4{border-left:6px solid var(--c4)}
+.ex{background:#0f0f2b;padding:10px 14px;border-radius:12px;margin-top:8px;color:var(--c4);font-weight:600;overflow-x:auto}
+table{border-collapse:collapse;margin:10px 0;font-size:.95rem}
+td,th{border:1px solid #3a3a7a;padding:5px 14px;text-align:center}
+th{background:#2a1f66;color:var(--c2)}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.opt{font:inherit;padding:8px 16px;border-radius:12px;border:2px solid #2d2d66;background:#0f0f2b;color:var(--tx);cursor:pointer}
+.opt:hover{border-color:var(--c2)}.opt.sel{border-color:var(--c1);background:#2a1f66}
+.ok{border-color:var(--c2)!important;background:#00e0c622!important}.bad{border-color:var(--c3)!important;background:#ff5c8a22!important}
+.fb{margin-top:8px;font-weight:600;min-height:1.2em}
+.q small{color:var(--c2);font-weight:600}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.row input{width:130px}
+.bar{height:10px;background:#22224f;border-radius:10px;overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--c3),var(--c4),var(--c2))}
+.big{font-size:4rem;font-weight:800;background:linear-gradient(90deg,var(--c2),var(--c4));-webkit-background-clip:text;background-clip:text;color:transparent}
+.prog{color:var(--mu);font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+<h1>📊 Tendencia Central en Datos Agrupados</h1>
+<p>Grado sexto · Tablas de frecuencia · Intervalos · Media · Moda · Mediana</p>
+<div class="name"><label for="nm">👤 Nombre del estudiante:</label><input id="nm" placeholder="Escribe tu nombre completo"></div>
+</header>
+<nav id="nav"></nav>
+<main>
+<section id="teoria">
+<div class="card t1"><h3>🟢 Datos agrupados y frecuencia</h3><p>Cuando hay muchos datos, los organizamos en una <b>tabla de frecuencias</b>. La <b>frecuencia (f)</b> es el número de veces que se repite un dato. La suma de las frecuencias es el total de datos (<b>n</b>).</p>
+<div class="ex">Libros leídos por 10 estudiantes<table><tr><th>Libros (x)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>f</th><td>1</td><td>2</td><td>4</td><td>2</td><td>1</td></tr></table>n = 1+2+4+2+1 = 10</div></div>
+<div class="card t2"><h3>🟣 Media en datos agrupados</h3><p>Multiplica cada dato por su frecuencia (x·f), suma todos esos productos y divide entre n.</p><div class="ex">Σ(x·f) = 1+4+12+8+5 = 30 → media = 30 ÷ 10 = 3</div></div>
+<div class="card t3"><h3>🔴 Moda y Mediana</h3><p><b>Moda:</b> el dato con la mayor frecuencia.<br><b>Mediana:</b> el dato central. Con n = 10 están en las posiciones 5 y 6. Se van sumando las frecuencias (frecuencia acumulada) hasta llegar a esas posiciones.</p><div class="ex">Acumuladas: 1, 3, 7, 9, 10 → las posiciones 5 y 6 caen en x = 3 → mediana = 3</div></div>
+<div class="card t4"><h3>🟡 Datos en intervalos y marca de clase</h3><p>Si los datos son muy distintos, se agrupan en <b>intervalos</b> (por ejemplo 0–10, 10–20…). La <b>marca de clase</b> es el punto medio de cada intervalo y se usa como si fuera el dato: (límite inferior + límite superior) ÷ 2. La <b>clase modal</b> es el intervalo con mayor frecuencia, y el <b>intervalo mediano</b> es el que contiene el dato central.</p>
+<div class="ex"><table><tr><th>Intervalo</th><td>0–10</td><td>10–20</td><td>20–30</td><td>30–40</td></tr><tr><th>Marca (x)</th><td>5</td><td>15</td><td>25</td><td>35</td></tr><tr><th>f</th><td>3</td><td>5</td><td>9</td><td>3</td></tr></table>Clase modal: 20–30 · Σ(x·f) = 420 · media = 420 ÷ 20 = 21</div></div>
+<div class="card"><h3>🧮 Calculadora de prueba</h3><p class="prog">Escribe pares dato:frecuencia o intervalo:frecuencia separados por comas. Ej: <b>1:2, 2:3, 3:5</b> o <b>0-10:3, 10-20:5</b></p>
+<div class="row"><input id="cal" style="width:300px" value="1:1, 2:2, 3:4, 4:2, 5:1"><button class="btn" onclick="calc()">Calcular</button></div><div class="ex" id="calr"></div></div>
+</section>
+<section id="taller"></section>
+<section id="evaluacion"></section>
+<section id="ejercicios"></section>
+<section id="resultado">
+<div class="card" style="text-align:center"><h3>🏁 Resultado final</h3><p class="prog">Completa las secciones y pulsa el botón para ver tu nota.</p><br><button class="btn" onclick="finish()">🎯 Generar nota y resumen</button><div id="out"></div></div>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const MC=(tag,q,o,a)=>({tag,q,t:'mc',o,a}),NU=(tag,q,a)=>({tag,q,t:'num',a}),TF=(tag,q,a)=>({tag,q,t:'tf',o:['Verdadero','Falso'],a:a?0:1});
+const tb=(h,xs,fs)=>`<table><tr><th>${h}</th>${xs.map(x=>`<td>${x}</td>`).join('')}</tr><tr><th>f</th>${fs.map(x=>`<td>${x}</td>`).join('')}</tr></table>`;
+const A=tb('Nota',[1,2,3,4,5],[2,3,4,5,1]);
+const B=tb('Mascotas',[0,1,2,3],[3,4,2,1]);
+const IV=['0–10','10–20','20–30','30–40'];
+const C=tb('Intervalo',IV,[3,5,9,3]);
+const D=tb('Intervalo',['10–15','15–20','20–25','25–30'],[2,6,8,4]);
+const EVA=[
+MC('Conceptos','¿Qué muestra una tabla de frecuencias?',['Cuántas veces se repite cada dato','Solo el dato mayor','El promedio de los datos','El perímetro de una figura'],0),
+MC('Conceptos','La frecuencia absoluta (f) de un dato es:',['El dato más grande','El número de veces que se repite ese dato','La suma de todos los datos','El punto medio de un intervalo'],1),
+NU('Problemas','Notas de un grupo:'+A+'¿Cuántos datos (n) hay en total?',15),
+NU('Media','Con la tabla anterior de notas:'+A+'¿Cuánto da la suma Σ(x·f)?',45),
+NU('Media','Con la tabla de notas:'+A+'¿Cuál es la media? (Σ(x·f) ÷ n)',3),
+NU('Moda','Con la tabla de notas:'+A+'¿Cuál es la moda?',4),
+NU('Mediana','Con la tabla de notas:'+A+'n = 15, el dato central está en la posición 8. ¿Cuál es la mediana?',3),
+NU('Rango','Con la tabla de notas:'+A+'¿Cuál es el rango (dato mayor − dato menor)?',4),
+NU('Media','Mascotas por familia:'+B+'¿Cuál es la media?',1.1),
+NU('Moda','Con la tabla de mascotas:'+B+'¿Cuál es la moda?',1),
+NU('Mediana','Con la tabla de mascotas:'+B+'n = 10, posiciones centrales 5 y 6. ¿Cuál es la mediana?',1),
+MC('Conceptos','La marca de clase de un intervalo es:',['El límite superior','La frecuencia','El punto medio del intervalo','La diferencia entre los límites'],2),
+NU('Media','Datos agrupados:'+C+'¿Cuál es la marca de clase del intervalo 20–30?',25),
+NU('Media','Con marcas de clase 5, 15, 25 y 35:'+C+'¿Cuánto da Σ(x·f)?',420),
+NU('Media','Con la tabla:'+C+'¿Cuál es la media? (n = 20)',21),
+MC('Moda','En la tabla:'+C+'¿Cuál es la clase modal?',['0–10','10–20','20–30','30–40'],2),
+MC('Mediana','En la tabla:'+C+'n = 20, posiciones centrales 10 y 11. ¿En qué intervalo está la mediana?',['0–10','10–20','20–30','30–40'],2),
+NU('Media','Datos agrupados:'+D+'¿Cuál es la marca de clase del intervalo 10–15?',12.5),
+NU('Media','Con la tabla:'+D+'(marcas 12,5 · 17,5 · 22,5 · 27,5; n = 20) ¿Cuál es la media?',21),
+MC('Moda','En la tabla:'+D+'¿Cuál es la marca de clase de la clase modal?',['17,5','22,5','20','25'],1)];
+const ACT=[
+MC('Conceptos','La letra f en una tabla significa:',['Frecuencia','Fracción','Figura','Factor'],0),
+NU('Problemas','Datos: 1, 1, 2, 3, 3, 3. ¿Cuál es la frecuencia del 3?',3),
+TF('Conceptos','La suma de las frecuencias es el total de datos (n).',true),
+NU('Problemas',tb('x',[1,2,3],[4,3,3])+'¿Cuánto vale n?',10),
+NU('Media',tb('x',[1,2,3],[4,3,3])+'¿Cuánto da Σ(x·f)?',19),
+NU('Media',tb('x',[1,2,3],[4,3,3])+'¿Cuál es la media?',1.9),
+NU('Moda',tb('x',[5,6,7],[2,7,1])+'¿Cuál es la moda?',6),
+NU('Mediana',tb('x',[1,2,3],[2,3,2])+'n = 7, la posición central es la 4. ¿Mediana?',2),
+TF('Moda',tb('x',[3,4,5],[6,2,2])+'La moda es 3.',true),
+NU('Media','Marca de clase del intervalo 0–4',2),
+NU('Media','Marca de clase del intervalo 10–20',15),
+NU('Media','Marca de clase del intervalo 30–50',40),
+MC('Moda',tb('Intervalo',['0–10','10–20','20–30'],[2,7,3])+'¿Cuál es la clase modal?',['0–10','10–20','20–30','No hay'],1),
+TF('Conceptos','La marca de clase es el punto medio del intervalo.',true),
+NU('Media',tb('Intervalo',['0–10','10–20'],[2,2])+'Marcas 5 y 15. ¿Cuál es la media?',10),
+MC('Mediana',tb('Intervalo',['0–10','10–20','20–30'],[3,5,2])+'n = 10, posiciones 5 y 6. ¿Intervalo mediano?',['0–10','10–20','20–30','Ninguno'],1),
+NU('Rango',tb('x',[3,5,9],[2,3,1])+'¿Cuál es el rango?',6),
+NU('Mediana',tb('x',[1,2,3,4],[1,1,1,1])+'n = 4, posiciones 2 y 3. ¿Mediana?',2.5),
+TF('Media','En datos agrupados, la media se obtiene sumando solo las frecuencias.',false),
+NU('Media',tb('x',[2,4,6],[1,2,1])+'¿Cuál es la media?',4)];
+const TAL=[
+{t:'📚 Libros leídos por 10 estudiantes en el mes:'+tb('Libros',[1,2,3,4,5],[1,2,4,2,1]),f:[['Problemas','Total de datos (n)',10],['Media','Σ(x·f)',30],['Media','Media',3],['Moda','Moda',3]],h:'Pista: multiplica cada dato por su frecuencia y suma.'},
+{t:'⏱️ Puntos obtenidos en un juego por 20 jugadores:'+tb('Intervalo',['20–30','30–40','40–50','50–60'],[4,8,6,2]),f:[['Media','Marca de clase del 1.er intervalo',25],['Media','Media',38],['Moda','Marca de clase de la clase modal',35],['Mediana','Marca de clase del intervalo mediano',35]],h:'Pista: marcas 25, 35, 45, 55. Σ(x·f) = 760. Posiciones centrales 10 y 11.'},
+{t:'🏆 Reto: en la tabla falta una frecuencia. Se sabe que n = 20.'+tb('x',[1,2,3,4],[4,6,'?',5]),f:[['Problemas','Frecuencia que falta',5],['Moda','Moda',2]],h:'Pista: 20 − (4 + 6 + 5) = ?'}];
+const R={eva:{},act:{},tal:{}};
+const num=v=>parseFloat(String(v).replace(',','.'));
+const okNum=(v,a)=>!isNaN(num(v))&&Math.abs(num(v)-a)<0.01;
+const isOk=(it,v)=>it.t=='num'?okNum(v,it.a):v===it.a;
+function lst(k){return k=='eva'?EVA:ACT}
+function build(id,title,list,key,instant){
+ let h=`<div class="card"><h3>${title}</h3><p class="prog" id="${id}p"></p></div>`;
+ list.forEach((it,i)=>{
+  h+=`<div class="card q"><small>${it.tag} · Pregunta ${i+1}</small><p>${it.q}</p>`;
+  if(it.t=='num')h+=`<div class="row"><input type="text" inputmode="decimal" id="${id}${i}" placeholder="Respuesta" oninput="ans('${key}',${i},this.value)">${instant?`<button class="btn" onclick="chk('${key}',${i})">Comprobar</button>`:''}</div>`;
+  else h+=`<div class="opts">${it.o.map((o,j)=>`<button class="opt" id="${id}${i}_${j}" onclick="pick('${key}',${i},${j},${instant})">${o}</button>`).join('')}</div>`;
+  h+=`<div class="fb" id="${id}f${i}"></div></div>`;
+ });
+ $('#'+id).innerHTML=h;prog(id,key);
+}
+function ans(k,i,v){R[k][i]=v;prog(k=='eva'?'evaluacion':'ejercicios',k)}
+function pick(k,i,j,ins){
+ const id=k=='eva'?'evaluacion':'ejercicios',it=lst(k)[i];
+ if(ins&&R[k][i]!==undefined)return;
+ R[k][i]=j;
+ it.o.forEach((_,x)=>$(`#${id}${i}_${x}`).classList.toggle('sel',x==j));
+ if(ins)chk(k,i);
+ prog(id,k);
+}
+function chk(k,i){
+ const id=k=='eva'?'evaluacion':'ejercicios',it=lst(k)[i],v=R[k][i],f=$(`#${id}f${i}`);
+ if(v===undefined||v===''){f.textContent='Escribe o elige una respuesta.';return}
+ const ok=isOk(it,v);f.textContent=ok?'✅ ¡Correcto!':'❌ Inténtalo de nuevo o repasa la teoría.';f.style.color=ok?'var(--c2)':'var(--c3)';
+ if(it.t!='num'){$(`#${id}${i}_${it.a}`).classList.add('ok');if(!ok)$(`#${id}${i}_${v}`).classList.add('bad')}
+}
+function prog(id,k){const n=Object.values(R[k]).filter(v=>v!=='').length,t=lst(k).length;const e=$('#'+id+'p');if(e)e.textContent=`Respondidas: ${n} de ${t}`}
+function buildTal(){
+ let h='<div class="card"><h3>🛠️ Taller de práctica</h3><p class="prog">Resuelve cada situación. Usa las pistas si las necesitas.</p></div>';
+ TAL.forEach((p,i)=>{h+=`<div class="card t${i+1}"><p><b>${p.t}</b></p><p class="prog">${p.h}</p>`;
+  p.f.forEach((f,j)=>h+=`<div class="row"><label>${f[1]}:</label><input type="text" inputmode="decimal" id="t${i}_${j}" oninput="R.tal['${i}_${j}']=this.value"></div>`);
+  h+=`<div class="row"><button class="btn" onclick="chkT(${i})">Comprobar</button></div><div class="fb" id="tf${i}"></div></div>`});
+ $('#taller').innerHTML=h;
+}
+function chkT(i){let c=0;TAL[i].f.forEach((f,j)=>{const e=$(`#t${i}_${j}`),ok=okNum(e.value,f[2]);if(ok)c++;e.style.borderColor=ok?'var(--c2)':'var(--c3)'});
+ const n=TAL[i].f.length,fb=$('#tf'+i);fb.textContent=c==n?'🎉 ¡Todo correcto!':`Llevas ${c} de ${n} bien. Revisa las que están en rojo.`;fb.style.color=c==n?'var(--c2)':'var(--c4)'}
+function calc(){
+ const it=$('#cal').value.split(',').map(s=>s.trim()).filter(Boolean).map(s=>{const[a,b]=s.split(':').map(x=>x.trim());const m=a.match(/^(-?[\d.]+)\s*[-–]\s*(-?[\d.]+)$/);const x=m?(+m[1]+ +m[2])/2:num(a);return{l:a,x,f:num(b),iv:!!m}}).filter(o=>!isNaN(o.x)&&!isNaN(o.f)&&o.f>0);
+ if(!it.length){$('#calr').textContent='Usa el formato dato:frecuencia, por ejemplo 1:2, 2:3';return}
+ const n=it.reduce((a,o)=>a+o.f,0),sx=it.reduce((a,o)=>a+o.x*o.f,0),mx=Math.max(...it.map(o=>o.f)),mo=it.filter(o=>o.f==mx).map(o=>o.l).join(' y ');
+ const at=p=>{let c=0;for(const o of it){c+=o.f;if(p<=c)return o}};
+ const p1=at(Math.ceil(n/2)),p2=at(Math.floor(n/2)+1);
+ const md=p1===p2||!p1.iv&&p1.x==p2.x?p1.l:(p1.iv?p1.l+' y '+p2.l:+((p1.x+p2.x)/2).toFixed(2));
+ $('#calr').innerHTML=`n = ${n} · Σ(x·f) = ${+sx.toFixed(2)}<br>Media: ${+(sx/n).toFixed(2)} · Moda: ${mo} · Mediana: ${md}`}
+const SUG={Conceptos:'Repasa en la Teoría qué significan frecuencia (f), n, marca de clase, clase modal e intervalo mediano.',Media:'Multiplica cada dato (o marca de clase) por su frecuencia, suma esos productos y divide entre n. Haz una columna x·f en tu cuaderno.',Mediana:'Calcula las frecuencias acumuladas y busca en qué dato (o intervalo) caen las posiciones centrales de n.',Moda:'Busca la frecuencia más alta de la tabla: su dato (o intervalo) es la moda. En intervalos, usa su marca de clase si te la piden.',Rango:'Resta el dato mayor menos el dato menor de la tabla.',Problemas:'Recuerda que la suma de todas las frecuencias es n. Despeja el valor que falta con una resta.'};
+function finish(){
+ const nm=$('#nm').value.trim();if(!nm){alert('Escribe tu nombre arriba antes de generar la nota.');window.scrollTo(0,0);$('#nm').focus();return}
+ const st={};const add=(tag,ok)=>{st[tag]=st[tag]||[0,0];st[tag][1]++;if(ok)st[tag][0]++};
+ let e=0,a=0,t=0,tt=0;
+ EVA.forEach((it,i)=>{const v=R.eva[i],ok=v!==undefined&&v!==''&&isOk(it,v);if(ok)e++;add(it.tag,ok)});
+ ACT.forEach((it,i)=>{const v=R.act[i],ok=v!==undefined&&v!==''&&isOk(it,v);if(ok)a++;add(it.tag,ok)});
+ TAL.forEach((p,i)=>p.f.forEach((f,j)=>{tt++;const ok=okNum(R.tal[i+'_'+j]??'',f[2]);if(ok)t++;add(f[0],ok)}));
+ const pe=e/EVA.length,pa=a/ACT.length,pt=t/tt;
+ const nota=+(5*(0.6*pe+0.3*pa+0.1*pt)).toFixed(1);
+ const msg=nota>=4.5?'🌟 ¡Excelente trabajo!':nota>=3.5?'👏 ¡Muy bien!':nota>=3?'🙂 Aprobaste, ¡pero puedes mejorar!':'💪 No te rindas, ¡a repasar!';
+ let h=`<hr style="border-color:#2d2d66;margin:20px 0"><p>Estudiante: <b>${nm.replace(/</g,'&lt;')}</b></p><div class="big">${nota.toFixed(1)}</div><p>${msg}</p><br>
+ <div style="text-align:left"><p>Evaluación (60%): ${e}/${EVA.length}</p><div class="bar"><i style="width:${pe*100}%"></i></div>
+ <p>Ejercicios interactivos (30%): ${a}/${ACT.length}</p><div class="bar"><i style="width:${pa*100}%"></i></div>
+ <p>Taller (10%): ${t}/${tt}</p><div class="bar"><i style="width:${pt*100}%"></i></div>
+ <h3 style="margin:16px 0 8px">🔍 Dificultades observadas y sugerencias</h3>`;
+ let weak=0;
+ Object.entries(st).forEach(([k,[g,n]])=>{if(g/n<0.6){weak++;h+=`<div class="card t3"><b>${k}</b> — acertaste ${g} de ${n}<br><span class="prog">💡 ${SUG[k]}</span></div>`}});
+ if(!weak)h+='<div class="card t1">✅ No se observan dificultades importantes. ¡Sigue practicando con tablas de tu vida diaria!</div>';
+ h+='</div><br><button class="btn" onclick="window.print()">🖨️ Imprimir / guardar PDF</button>';
+ $('#out').innerHTML=h;
+}
+build('evaluacion','📝 Evaluación (20 preguntas)',EVA,'eva',false);
+build('ejercicios','🎮 Ejercicios interactivos (20 actividades)',ACT,'act',true);
+buildTal();calc();
+const tabs=[['teoria','📚 Teoría'],['taller','🛠️ Taller'],['evaluacion','📝 Evaluación'],['ejercicios','🎮 Ejercicios'],['resultado','🏁 Resultado']];
+$('#nav').innerHTML=tabs.map(([id,n])=>`<button data-id="${id}" onclick="go('${id}')">${n}</button>`).join('');
+function go(id){document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id==id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.id==id));window.scrollTo({top:0,behavior:'smooth'})}
+go('teoria');
+</script>
+</body>
+</html>
